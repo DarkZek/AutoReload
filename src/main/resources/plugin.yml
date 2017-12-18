@@ -1,0 +1,5 @@
+name: AutoReload
+main: com.darkzek.autoreload.AutoReload
+version: 1
+author: DarkZek
+commands:
