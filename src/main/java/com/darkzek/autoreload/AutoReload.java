@@ -70,6 +70,9 @@ public class AutoReload extends JavaPlugin {
                     if (time < listOfFiles[i].lastModified()) {
                         //Has been modified!
                         String pluginName = fileToPluginName.get(fileName);
+                        if (pluginName == null) {
+                            continue;
+                        }
                         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "plugman reload " + pluginName);
                         Bukkit.getServer().broadcastMessage("Successfully reloaded " + pluginName + "!");
                         timeSinceLastChanged.remove(fileName);
