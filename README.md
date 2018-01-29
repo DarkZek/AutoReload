@@ -16,7 +16,7 @@ Thats it! Just restart your server using /stop and you're done!
 
 ## Authors
 
-* **Marshall Ashdowne** - [DarkZek](https://github.com/PurpleBooth)
+* **Marshall Ashdowne** - [DarkZek](https://github.com/DarkZek)
 
 See also the list of [contributors](https://github.com/darkzek/AutoReload/contributors) who participated in this project.
 
