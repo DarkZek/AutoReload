@@ -9,34 +9,41 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 
 /**
  * Created by darkzek on 18/12/17.
  */
 public class AutoReload extends JavaPlugin {
-    HashMap<String, Long> timeSinceLastChanged = new HashMap<String, Long>();
-    HashMap<String, String> fileToPluginName = new HashMap<String, String>();
+    private final Map<String, Long> timeSinceLastChanged = new HashMap();
+    private final HashMap<String, String> fileToPluginName = new HashMap();
 
     String pluginsFolder;
 
     @Override
     public void onEnable() {
         //Get location of plugins folder
-        pluginsFolder = this.getDataFolder().getAbsolutePath().replace("AutoReload", "");
+        pluginsFolder = this.getDataFolder().getAbsolutePath();
+
+        //10 because autoreload is 10 characters long
+        pluginsFolder = pluginsFolder.substring(0, pluginsFolder.length() - 10);
+
         //Generate list of times
-        LogTimes();
+        logTimes();
+
         //Get plugin jar to plugin name
-        GetPlugins();
+        getPlugins();
+
         //Set it to check every so often
         new BukkitRunnable() {
             public void run() {
-                CheckIfModified();
+                checkIfModified();
             }
         }.runTaskTimerAsynchronously(this, 1, 20); //auto complete this statement
     }
 
-    void GetPlugins() {
+    void getPlugins() {
         Plugin[] plugins = Bukkit.getServer().getPluginManager().getPlugins();
         for (int i = 0; i < plugins.length; i++) {
             Plugin plugin = plugins[i];
@@ -46,7 +53,7 @@ public class AutoReload extends JavaPlugin {
             try {
                 location = URLDecoder.decode(location, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                getLogger().log(Level.SEVERE, "Your java does not support converting to UTF-8, you really need to get a better pc/java");
+                getLogger().log(Level.SEVERE, "Your java doesn't support converting to UTF-8! Please update it");
                 return;
             }
 
@@ -54,7 +61,7 @@ public class AutoReload extends JavaPlugin {
         }
     }
 
-    void CheckIfModified() {
+    void checkIfModified() {
         File folder = new File(pluginsFolder);
         File[] listOfFiles = folder.listFiles();
 
@@ -81,7 +88,7 @@ public class AutoReload extends JavaPlugin {
         }
     }
 
-    void LogTimes() {
+    void logTimes() {
         File folder = new File(pluginsFolder);
         File[] listOfFiles = folder.listFiles();
 
