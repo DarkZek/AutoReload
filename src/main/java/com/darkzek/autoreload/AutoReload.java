@@ -53,7 +53,7 @@ public class AutoReload extends JavaPlugin {
             try {
                 location = URLDecoder.decode(location, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                getLogger().log(Level.SEVERE, "Your java doesn't support converting to UTF-8! Please update it");
+                getLogger().log(Level.SEVERE, "Your java doesn't support converting to UTF-8! Please update it before using Auto Reload");
                 return;
             }
 
@@ -78,7 +78,9 @@ public class AutoReload extends JavaPlugin {
                         if (pluginName == null) {
                             continue;
                         }
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "plugman reload " + pluginName);
+
+                        //Send command synchronously
+                        Bukkit.getScheduler().callSyncMethod( this, () -> Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "plugman reload " + pluginName));
                         Bukkit.getServer().broadcastMessage("Successfully reloaded " + pluginName + "!");
                         timeSinceLastChanged.remove(fileName);
                         timeSinceLastChanged.put(fileName, listOfFiles[i].lastModified());

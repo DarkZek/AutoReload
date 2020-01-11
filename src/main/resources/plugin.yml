@@ -1,5 +1,5 @@
 name: AutoReload
 main: com.darkzek.autoreload.AutoReload
-version: 1.02
+version: 1.03
 author: DarkZek
 commands:
