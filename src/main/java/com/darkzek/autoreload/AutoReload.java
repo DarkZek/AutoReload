@@ -96,7 +96,7 @@ public class AutoReload extends JavaPlugin {
 
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile() && listOfFiles[i].getName().endsWith(".jar")) {
-                System.out.println("Found plugin " + listOfFiles[i].getName());
+                getLogger().log(Level.INFO, "Found plugin " + listOfFiles[i].getName());
                 timeSinceLastChanged.put(listOfFiles[i].getName(), listOfFiles[i].lastModified());
             }
         }
