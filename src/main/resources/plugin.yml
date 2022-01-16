@@ -1,6 +1,6 @@
 name: AutoReload
 main: com.darkzek.autoreload.AutoReload
-version: 1.03
+version: 1.04
 api-version: 1.13
 author: DarkZek
 commands:

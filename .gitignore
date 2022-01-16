@@ -22,7 +22,6 @@ hs_err_pid*
 .directory
 .project
 #.gitignore
-pom.xml
 #.iml
 AutoReload.iml
 target/
